@@ -1,32 +1,14 @@
 /// <reference path="typings/node/node.d.ts"/>
 // test server
 
-var express = require('express');
-var faker = require('faker');
-var app = express();
+var express = require('express'),
+    faker = require('faker'),
+    app = express(),
+    userData = [],
+    generateUserData,
+    generateProductData;
+    
 app.set('port', process.env.PORT || 8080);
-var userData = [];
-var generateUserData;
-
-generateUserData = function(users) {
-  var fakeName;
-  var tmp = {};
-  var i = 0;
-  var obj = { 'data': [] };
-  users = Object.prototype.toString.call(users) === '[object Array]' ? users : [];
-  for (i = 0; i < 10; i++) {
-    fakeName = faker.name;
-    tmp = {
-      'firstName': fakeName.firstName(),
-      'lastName': fakeName.lastName(),
-      'job': fakeName.jobTitle(),
-      'prefix': fakeName.prefix()
-    };
-    users.push(tmp);
-  }
-  obj.data = users;
-  return obj;
-};
 
 // static directories.
 app.use(express.static('angular'));
@@ -44,9 +26,15 @@ app.get('/testUser', function(req, res) {
 });
 
 // REST API (Send a fake user name)
-app.get('/testUserData', function(req, res) {
+app.get('/getUserData', function(req, res) {
   res.type('application/json');
   res.send(generateUserData());
+});
+
+// REST API (Send a fake user name)
+app.get('/getProductData', function(req, res) {
+  res.type('application/json');
+  res.send(generateProductData());
 });
 
 
@@ -67,6 +55,51 @@ app.use(function(err, req, res, next){ console.error(err.stack);
   res.status(500);
   res.send('500 - Server Error');
 });
+
+// Faker data generator:
+
+// generate some fake users.
+generateUserData = function(users) {
+  var fakeName;
+  var tmp = {};
+  var i = 0;
+  var obj = { 'data': [] };
+  users = Object.prototype.toString.call(users) === '[object Array]' ? users : [];
+  for (i = 0; i < 10; i++) {
+    fakeName = faker.name;
+    tmp = {
+      'firstName': fakeName.firstName(),
+      'lastName': fakeName.lastName(),
+      'job': fakeName.jobTitle(),
+      'prefix': fakeName.prefix()
+    };
+    users.push(tmp);
+  }
+  obj.data = users;
+  return obj;
+};
+
+// generate some fake products.
+generateProductData = function(products) {
+  var fakeProduct;
+  var tmp = {};
+  var i = 0;
+  var obj = { 'data': [] };
+  products = Object.prototype.toString.call(products) === '[object Array]' ? products : [];
+  for (i = 0; i < 20; i++) {
+    fakeProduct = faker.commerce;
+    tmp = {
+      'product': fakeProduct.product(),
+      'productName': fakeProduct.productName(),
+      'productMaterial': fakeProduct.productMaterial(),
+      'department': fakeProduct.department(),
+      'price': fakeProduct.price()
+    };
+    products.push(tmp);
+  }
+  obj.data = products;
+  return obj;
+};
 
 app.listen(app.get('port'), function(){
 console.log( 'Express started on http://localhost:' +

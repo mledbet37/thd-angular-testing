@@ -11,3 +11,15 @@
 (function() {
 	// Can also be written like this.
 }()); // <-- nested paren
+
+
+
+// /* avoid this pattern */
+// angular
+//     .module('app', ['ngRoute'])
+//     .controller('awesomeController', AwesomeController)
+//     .factory('awesomeFactory', AwesomeFactory);
+
+// function AwesomeController() { }
+
+// function AwesomeFactory() { }
