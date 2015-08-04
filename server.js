@@ -14,7 +14,6 @@ generateUserData = function(users) {
   var i = 0;
   var obj = { 'data': [] };
   users = Object.prototype.toString.call(users) === '[object Array]' ? users : [];
-  
   for (i = 0; i < 10; i++) {
     fakeName = faker.name;
     tmp = {
@@ -29,7 +28,8 @@ generateUserData = function(users) {
   return obj;
 };
 
-
+// static directories.
+app.use(express.static('angular'));
 
 // REST API Methods
 app.get('/', function(req, res){
@@ -49,29 +49,10 @@ app.get('/testUserData', function(req, res) {
   res.send(generateUserData());
 });
 
-app.get('/angular_a/default.html', function(req, res) {
+
+app.get('/angular/default.html', function(req, res) {
   res.type('text/html');
-  res.sendfile(__dirname + '/angular_a/default.html');
-});
-app.get('/angular_b/default.html', function(req, res) {
-  res.type('text/html');
-  res.sendfile(__dirname + '/angular_b/default.html');
-});
-app.get('/angular_c/default.html', function(req, res) {
-  res.type('text/html');
-  res.sendfile(__dirname + '/angular_c/default.html');
-});
-app.get('/angular_d/default.html', function(req, res) {
-  res.type('text/html');
-  res.sendfile(__dirname + '/angular_d/default.html');
-});
-app.get('/angular_e/default.html', function(req, res) {
-  res.type('text/html');
-  res.sendfile(__dirname + '/angular_e/default.html');
-});
-app.get('/angular_f/default.html', function(req, res) {
-  res.type('text/html');
-  res.sendfile(__dirname + '/angular_f/default.html');
+  res.sendfile(__dirname + '/angular/default.html');
 });
 
 // custom 404 page
