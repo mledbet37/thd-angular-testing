@@ -1,0 +1,22 @@
+{
+  "name": "thd-angular-testing",
+  "version": "1.0.0",
+  "description": "test angular project for learning purposes and stuff",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mledbet37/thd-angular-testing.git"
+  },
+  "author": "Matthew Ledbetter",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mledbet37/thd-angular-testing/issues"
+  },
+  "homepage": "https://github.com/mledbet37/thd-angular-testing#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}

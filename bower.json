@@ -1,0 +1,21 @@
+{
+  "name": "thd-angular-testing",
+  "version": "1.0.0",
+  "homepage": "https://github.com/mledbet37/thd-angular-testing",
+  "description": "angular test project",
+  "main": "app.js",
+  "authors": [
+    "Matthew Ledbetter"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5"
+  }
+}
